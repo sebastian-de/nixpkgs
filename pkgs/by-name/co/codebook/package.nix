@@ -1,7 +1,9 @@
 {
   lib,
+  aws-lc,
   fetchFromGitHub,
   nix-update-script,
+  pkg-config,
   rustPlatform,
   versionCheckHook,
 }:
@@ -19,6 +21,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   buildAndTestSubdir = "crates/codebook-lsp";
   cargoHash = "sha256-RG2slCQ2RUBt5+6DdLxAwBm0J9kzgtIthNP8jPfRqME=";
+
+  nativeBuildInputs = [ pkg-config ];
+
+  buildInputs = [ aws-lc ];
 
   env = {
     CARGO_PROFILE_RELEASE_LTO = "fat";
